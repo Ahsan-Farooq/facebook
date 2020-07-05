@@ -1,0 +1,710 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
+
+
+
+<!-- Mirrored from www.easyload.com.pk/pakform.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2020 02:19:33 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+
+
+	<!-- Basic Page Needs
+
+  ================================================== -->
+
+	<meta charset="utf-8">
+
+	<title>EasyLoad | Form</title>
+
+
+
+	<!-- Mobile Specific Metas
+
+  ================================================== -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+	<!-- CSS
+
+  ================================================== -->
+
+
+
+<link rel="stylesheet" href="stylesheets/skeleton.css">
+
+	<link rel="stylesheet" href="stylesheets/style.css">
+
+
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600' rel='stylesheet' type='text/css'>	
+
+
+
+
+
+	<link rel="stylesheet" href="stylesheets/flexslider.css" type="text/css" media="screen" />
+
+	<link rel="stylesheet" href="stylesheets/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+
+	<link rel="stylesheet" href="stylesheets/carousel.css" type="text/css" media="screen" />
+
+	
+
+	<!-- JS
+
+  ================================================== -->	
+
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+	<script type="text/javascript" src="js/common.js"></script>
+
+	
+
+	
+
+	<script type="text/javascript" src="js/sequence.jquery-min.js"></script>	
+
+	<script type="text/javascript" src="js/jquery.quicksand.js"></script>
+
+
+
+	<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+
+	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.tipsy.js"></script>
+
+
+
+
+
+	<!-- Favicons
+
+	================================================== -->
+
+	<link rel="shortcut icon" href="images/favicon.png">
+
+    <style>
+
+	table p{ margin:0; padding:2px;}
+
+	table tr:hover{ background:#03A3FC; color:white; }
+
+	</style>
+<script type="text/javascript">
+
+
+
+function echeck(str) {
+
+
+
+               var at="@"
+
+               var dot="."
+
+               var lat=str.indexOf(at)
+
+               var lstr=str.length
+
+               var ldot=str.indexOf(dot)
+
+               if (str.indexOf(at)==-1){
+
+                 
+
+                  return false
+
+               }
+
+
+
+               if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+
+                 
+
+                  return false
+
+               }
+
+
+
+               if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+
+                   
+
+                   return false
+
+               }
+
+
+
+                if (str.indexOf(at,(lat+1))!=-1){
+
+                 
+
+                   return false
+
+                }
+
+
+
+                if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+
+                 
+
+                   return false
+
+                }
+
+
+
+                if (str.indexOf(dot,(lat+2))==-1){
+
+                   
+
+                   return false
+
+                }
+
+               
+
+                if (str.indexOf(" ")!=-1){
+
+                   
+
+                   return false
+
+                }
+
+
+
+                 return true                                        
+
+       }
+
+function validation()
+
+{
+
+
+
+var Msgtxt,flag,code,tel;
+
+
+
+flag=true;
+
+Msgtxt="Please, Enter Required Value,\n";
+
+
+
+if(document.sendemail.name.value==""){        flag=false; Msgtxt+="Name\n";        }
+
+if((document.sendemail.email.value=="")||(echeck(document.sendemail.email.value)==false))  { flag=false; Msgtxt+="Valid E-mail ID\n";        }
+
+
+
+
+
+if(document.sendemail.minuts.value==""){        flag=false; Msgtxt+="Minutes\n";        }
+
+
+
+if(document.sendemail.minuts.value!="")  
+
+{
+
+//alert(document.sendemail.amount.value);	
+
+if(isNaN(document.sendemail.minuts.value))
+
+{
+
+	flag=false; Msgtxt+="Minutes Must be Number\n";
+
+}
+
+if(document.sendemail.minuts.value<50)
+
+{
+
+	flag=false; Msgtxt+="Minutes Must be 50 Plus\n";
+
+}
+
+
+
+calculate();
+
+//flag=false;		
+
+}
+
+
+
+
+
+
+
+
+
+if(flag==false)
+
+       {
+
+               alert(Msgtxt);
+
+               return false;
+
+       }
+
+       return true;
+
+       
+
+//        document.write(v1.concat(" Dhamecha"));
+
+       
+
+}
+
+function calculate()
+
+{
+
+	
+
+	var useramount=parseFloat(document.getElementById('minuts').value)*0.022;
+
+	var servicescharges=parseFloat(useramount*20/100)+parseFloat(0.3);
+
+	
+
+	var totalcharges=parseFloat(useramount)+parseFloat(servicescharges);
+
+	document.getElementById('totalmin').innerHTML=document.getElementById('minuts').value;
+
+	document.getElementById('amountrs').innerHTML=useramount.toFixed(2);
+
+	document.getElementById('servicecharges').innerHTML=servicescharges;
+
+	
+
+	document.getElementById('totalamount').innerHTML=totalcharges.toFixed(2);
+
+	document.getElementById('payableamount').value=totalcharges.toFixed(2);
+
+	
+
+	
+
+	
+
+	
+
+	
+
+}
+
+function displaynetwork(mynetwork)
+
+{
+
+	document.getElementById('networkid').innerHTML="Easy Load to "+mynetwork+" Network";
+
+	}
+
+</script>
+
+<style>
+
+.tablehead1 {
+
+    background-color: #5c5c5c;
+
+    border-bottom: 1px solid #555555;
+
+    color: #ffffff;
+
+    font-weight: bold;
+
+    padding: 10px;
+
+}
+
+.buttonpale,input[type="submit"] {
+
+    background-color: #f8f8f8;
+
+    color: #374045;
+
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+  
+
+	<div class="container">
+
+    
+
+    <div class="header clearfix row">
+
+			<div class="eight columns header_left">
+
+				<a href="index-2.html"><img src="images/logo.png"/></a>
+
+			</div>
+
+			<div class="eight columns">
+
+				<div class="header_right">
+
+					<div class="header_contacts clearfix">
+						<div class="header_phone">+923123452244</div>
+						<div class="header_mail">info@easyload.com.pk</div>
+					</div>
+
+					<div class="header_soc_search">
+
+						<div class="header_search">
+
+							<form class="search" action="#" method="get">
+								<button class="button_search"></button>
+								<input name="s" id="s" type="text" value="Search ..." onClick="this.value = '';"></span>
+							</form>
+
+						</div>
+
+						
+
+                         
+						<a href="https://twitter.com/" class="header_soc_twitter" id="soc_twitter">Twitter</a>
+
+						
+                        <a href="https://www.facebook.com/pages/Mobile-Recharge-to-Pakistan/1583684941852498" class="header_soc_fb" id="soc_fb">Facebook</a>
+
+						
+
+
+
+					</div>				
+
+				</div>
+
+			</div>
+
+		</div>
+
+		
+
+        
+
+ 
+
+		<div class="header clearfix row">
+
+        
+
+					
+
+		<!-- Featured Texts Section::END -->
+
+
+
+		<div class="row section_featured_texts section_featured_texts_no_m">	
+
+			<div class="column two-thirds">
+
+				<h3 style="margin:0;">Buy Minutes (Call to Pakistan)</h3>
+
+				<form action="#" method="post" id="sendemail" name="sendemail" onSubmit="return validation();">
+
+                <input type="hidden" name="payableamount" id="payableamount" />
+
+						  <input id="name" class="home-field" name="name" type="text"  placeholder="Full Name"/>
+<input id="mobilenumber" class="home-field" name="mobilenumber" type="text" value="" placeholder="Mobile Number"/>
+			<input id="email" class="home-field" name="email" type="email"  placeholder="Email ID"/>
+
+			<input id="minuts" class="home-field" name="minuts" type="text" value="" placeholder="Minutes"/>
+
+			<p style="margin:0;">(Minimum 50 minutes to buy)</p>
+
+            <input id="username" class="home-field" name="username" type="text" value="" placeholder="User Name"/>
+
+			<p style="margin:0;">(Recharge existing username)</p>
+
+		   
+
+                        <div class="acc_holder">
+
+					<div class="acc_item">
+
+						
+
+					</div>
+
+                    <div class="acc_item">
+
+						<h4 class="accordion">
+
+                        <span class="acc_heading">
+
+<a href="javascript: void(0)" onClick="validation();"><div style="background-color:#232323; color:white; padding:10px; width:110px; margin:0 0 0 20px; text-align:center;">Order Now!</div></a>
+
+                        </span></h4>
+
+						<div class="accordion_content">
+
+                       		
+
+                       		<table id="table" style="margin:0 0 0 20px; border:1px solid #8E8E8E;width:69%" >
+
+                            	<tr>
+
+                                	<td colspan="3" align="center" class="tablehead">Order Details.</td>
+
+                                </tr>
+
+                            	<tr>
+
+                                	<td class="tablehead1">Total Minutes: <div id="totalmin" style="width:82px;float:right;"></div></td>
+
+                                	<td class="tablehead1">Charges: USD <div id="amountrs" style="width:94px;float:right;"></div></td>
+
+                                </tr>
+
+                            	<tr>
+
+                                	<td colspan="2" class="tablehead1">Service Charges: USD <div id="servicecharges" style="width:100px;float:right;margin-right: 134px;"></div></td>
+
+                                </tr>
+
+                                
+
+                                <tr>
+
+                                	<td colspan="3" align="left" class="tablehead">Total Amount to Pay by Paypal: USD <div id="totalamount" style="width:142px;float:right;"></div></td>
+
+                                </tr>
+
+                            	<tr>
+
+                                	<td colspan="3" align="center" class="tablehead1"><input type="submit" name="Submit" id="Submit" value="Pay Now" class="buttonpale" /><!--<a href="#" class="button button_pale">Pay Now</a>--></td>
+
+                                </tr>
+
+                            </table>
+
+                            
+
+                        </div>
+
+					</div>
+
+				</div>
+
+											
+
+					</form>
+
+			</div>
+
+			<div class="column one-third">
+
+				<span class="icon big_graph"></span>
+
+				
+                <h3>How It Works</h3>
+
+				<p><p>Fillup the form and Pay by Paypal or credit/debit card. After payment confirmation we will send you username and password or recharge existing username in 30 minutes.</p></p>
+
+                
+                <span class="icon big_heart"></span>
+
+				<h3>How to Call</h3>
+
+				<p><p><span style="font-family: -apple-system-font; line-height: 16px;">Now, overseas Pakistani Call only in <strong>Pak</strong>&nbsp;</span><strong style="font-family: -apple-system-font; line-height: 16px;">Rs. 2.00</strong><span style="font-family: -apple-system-font; line-height: 16px;">&nbsp;(per min)&nbsp;directly to their loved ones.&nbsp;</span>&nbsp;</p>
+<p>Simply click below icons and install the <strong>YourDialer</strong> app on a mobile phone! You can also directly lookup <strong>'YourDialer'</strong> on the iPhone App Store or Google Play for Android. Then login with username &amp; password and make calls.&nbsp;</p>
+<p><a href="https://play.google.com/store/apps/details?id=dellmont.YourDialer" target="_blank"><img src="userfiles/android(1).png" width="122" height="41" alt="" /></a></p>
+<p><a href="https://itunes.apple.com/us/app/yourdialer/id498950671?mt=8" target="_blank"><img src="userfiles/iPhone(2).png" width="122" height="40" alt="" /></a></p>
+<p><a href="https://itunes.apple.com/us/app/yourdialer/id498950671?mt=8" target="_blank"><img src="userfiles/iPhone.png" width="0" height="0" alt="" /></a></p></p>
+
+			</div>
+
+		</div>
+
+		
+
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+
+				
+
+					$('#featured_services_carousel').jcarousel({
+
+					   	scroll: ($(window).width() > 767 ? 4 : 1),
+
+					   	easing: 'easeInOutExpo',
+
+					   	animation: 600
+
+					});
+
+			});
+
+			
+
+			// Reload carousels on window resize to scroll only 1 item if viewport is small
+
+		    $(window).resize(function() {
+
+		    	 var el = $("#featured_services_carousel"), carousel = el.data('jcarousel'), win_width = $(window).width();
+
+		    	   var visibleItems = (win_width > 767 ? 4 : 1);
+
+		    	   carousel.options.visible = visibleItems;
+
+		    	   carousel.options.scroll = visibleItems;
+
+		    	   carousel.reload();
+
+		    });</script>
+
+											
+
+					</form>
+
+			</div>
+
+            </div>
+
+            
+
+			</div>
+
+            
+
+            
+
+		</div>
+
+		
+
+	
+
+
+
+		
+
+
+
+		
+
+		
+
+		
+
+		
+
+	</div>	
+
+ 
+	
+
+<div class="clear"></div>
+
+	  <div id="footer" class="container">
+		<div class="row footer_inside">
+		  <div class="four columns">
+          		    <h3>About Us</h3>
+		    <p><p>We offer easy load service for five major mobile networks (Mobilink, Telenor, Ufone, Warid and Zong) of Pakistan. Surprise your loved ones by recharging their cell phone online.</p></p>
+		  </div>
+		  <div class="four columns">
+		    <h3 class="margined_left">Navigation</h3>
+		    <ul class="margined_left">
+		    	<li><a href="index-2.html">Home</a></li>
+                <li><a href="reseller/index.html">Reseller</a></li>
+                <li><a href="pakform.html">Call to Pakistan</a></li>
+                <li><a href="terms.html">Terms &amp; Condition</a></li>
+                <li><a href="faq.html">FAQ's</a></li>
+		    	<li><a href="contact.html">Contact Us</a></li>
+		    </ul>
+		  </div>
+		  <div class="four columns">
+		    <h3>Latest News</h3>
+               			<div class="footer_news_item clearfix">
+				<div class="footer_pic">
+					<a href="contact.html"><img src="thumbnails/20141210-0512045366210.jpg" alt="image"  /></a>
+				</div>
+				<h4><a href="contact.html"><p>Launching soon other network easyload</p> </a></h4>
+			</div>
+						<div class="footer_news_item clearfix">
+				<div class="footer_pic">
+					<a href="contact.html"><img src="thumbnails/20171201-1812168340483.html" alt="image"  /></a>
+				</div>
+				<h4><a href="contact.html"><p>Refer a friend and get Free Rs.100 recharge</p> </a></h4>
+			</div>
+					  </div>
+		  <div class="four columns">
+		  	<p>Get in Touch with Us</p>
+<p class="icon_loc">Blue Area Islamabad - Pakistan</p>
+<p class="icon_phone">+923329245087</p>
+<p class="icon_mail">info@easyload.com.pk</p>		    
+		  	<div class='clear'></div>
+		  	<div class='h10'></div>
+		
+		  </div> 
+	  </div> 
+	  <div class="clear"></div>
+	  <div class="footer_btm">
+	  	<div class="footer_btm_inner">
+			      	<a href='https://twitter.com/' target='_blank' class='icon_tweet' title='Tweeter'>Tweeter</a>
+						<a href="skype:mubarkan" class='icon_skype' title='Skype'>Skype</a>
+	      				<a href='https://www.facebook.com/pages/Mobile-Recharge-to-Pakistan/1583684941852498' target='_blank' class='icon_facebook' title='Facebook'>Facebook</a>
+	  	  	
+	  
+		  	<div id="powered">EasyLoad &copy; 2020 
+</div>
+		</div>	  
+	  </div>
+	</div>
+	
+
+  </div>
+
+
+
+</body>
+
+
+
+
+<!-- Mirrored from www.easyload.com.pk/pakform.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Apr 2020 02:19:35 GMT -->
+</html>
